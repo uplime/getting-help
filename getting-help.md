@@ -10,7 +10,7 @@ solved. This community has many knowledgable people (both regarding AWS and
 outside of it), and ideally, would be able to provide solutions to every post.
 However, for any number of reasons, the possibility still exists. Remember, this
 is a community-run server and everybody here is a volunteer, including AWS
-employees. 
+employees.
 
 ## Common Troubleshooting Methods
 
@@ -57,7 +57,7 @@ can make the cause and solution a lot more obvious to anybody looking at it
 
 ### Rolling Back Changes
 
-If the problem started occuring close to or immediately after a relevant change
+If the problem started occurring close to or immediately after a relevant change
 was made, try rolling it back if possible. For example, perhaps a botched or
 incompatible system update was installed, causing your service to crash. While
 coincidences can and do happen, there is a strong likelihood that the change is
@@ -105,7 +105,7 @@ is too many details, then that is a good sign that you should probably make a
 testcase. However, sometimes it may not even be obvious what details are
 relevant until after you've gotten a solution or answer. If you're at all unsure
 if it should be included or not, it is generally a better idea to include it and
-not need it. 
+not need it.
 
 ## Decoding Responses
 
