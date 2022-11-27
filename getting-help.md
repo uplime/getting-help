@@ -31,7 +31,7 @@ before. Try adapting any of these into a search engine query:
     S3, you might search "AWS S3 static website hosting". Perhaps somebody
     needed to do something similar, and found a way to do it that bypasses your
     problem entirely. Don't be discouraged if the first search turns up nothing.
-    Sometimes it can take [multiple refined searches](multi-searches).
+    Sometimes it can take [multiple refined searches][multi-searches].
 
   - The keywords of the  overall project you are implementing. Continuing with
     the above static hosting example, you might search "How to host a static
