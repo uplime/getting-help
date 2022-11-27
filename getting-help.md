@@ -41,7 +41,10 @@ before. Try adapting any of these into a search engine query:
 
 ### Reviewing Documentation
 
-Software, hardware, and networking can be incredibly complex at times. [Nobody can remember everything](https://twitter.com/ChrisShaver64/status/1072516363258880005), and double-checking that your understanding of the service, feature, library, etc. is correct never hurts. Worst case scenario, you're in the same position you were before you checked.
+Software, hardware, and networking can be incredibly complex at times. [Nobody
+can remember everything][python-docs], and double-checking that your
+understanding of the service, feature, library, etc. is correct never hurts.
+Worst case scenario, you're in the same position you were before you checked.
 
 ### Making a Testcase
 
@@ -102,3 +105,4 @@ If you've reached this point of the process, then congratulations, your problem 
   - [Debugging Terraform](https://www.terraform.io/internals/debugging)
 
 [multi-searches]: https://support.google.com/websearch/answer/2466433
+[python-docs]: https://twitter.com/ChrisShaver64/status/1072516363258880005
