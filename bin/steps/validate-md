@@ -1,0 +1,116 @@
+#!/usr/bin/env bash
+
+has() {
+  hash "$1" 2> /dev/null
+}
+
+is_enabled() {
+  local var_name=${FUNCNAME[1]^^}
+
+  if compgen -e | grep -qFx "$var_name"; then
+    [[ ${!var_name} != no ]]
+  else
+    return 1
+  fi
+}
+
+is_ci() {
+  is_enabled
+}
+
+wants_colors() {
+  is_enabled
+}
+
+log() {
+  local level=${FUNCNAME[1],,}
+
+  if is_ci; then
+    true
+  else
+    local pre vals
+
+    if wants_colors; then
+      declare -A colors=(
+        [red]=$(tput setaf 1) [green]=$(tput setaf 2)
+        [yellow]=$(tput setaf 3) [reset]=$(tput sgr0)
+      )
+
+      pre="%s[%s]:%s" vals=("${colors[$COLOR]}" "$level" "${colors[reset]}")
+    else
+      pre="[%s]:" vals=("$level")
+    fi
+
+    # This is intentional since it's a wrapper around `printf`.
+    # shellcheck disable=SC2059
+    printf "$pre $1\n" "${vals[@]}" "${@:2}"
+  fi
+}
+
+info() {
+  COLOR=green log "$@"
+}
+
+warn() {
+  COLOR=yellow log "$@"
+}
+
+error() {
+  COLOR=red log "$@"
+}
+
+die() {
+  error "$@"
+  exit "${CODE-1}"
+}
+
+deps=(grep typos) local_deps=(tput) ci_deps=()
+
+if is_ci; then
+  deps+=("${ci_deps[@]}")
+else
+  deps+=("${local_deps[@]}")
+fi
+
+for dep in "${deps[@]}"; do
+  if ! has "$dep"; then
+    WANTS_COLORS=no die "%s is a required dependency" "$dep"
+  fi
+done
+
+if ! compgen -e | grep -qFx WANTS_COLORS; then
+  export WANTS_COLORS=yes
+fi
+
+for file do
+  info "processing file %s" "$file"
+
+  if [[ ! -r $file ]]; then
+    error "unable to load file %s" "$file"
+    continue
+  elif ! typos "$file"; then
+    die "file %s had typos in it" "$file"
+  fi
+
+  idx=0
+
+  # Warning does not apply here, since the file is only being read from and not
+  # written to.
+  # shellcheck disable=SC2094
+  while IFS= read -r line; do
+    has_line_limit=1 line_len=${#line}
+    (( idx += 1 ))
+
+    if [[ $line =~ ^"["[A-Za-z0-9" ".,-]+"]: " ]]; then
+      has_line_limit=0
+    fi
+
+    if (( has_line_limit && line_len > 80 )); then
+      warn "line %d in file %s is longer than 80 characters" "$idx" "$file"
+    fi
+
+    if [[ $line = *@(" "|$'\t') ]]; then
+      warn "line %d in file %s has trailing space characters" "$idx" "$file"
+    fi
+  done < "$file"
+done
