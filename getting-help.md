@@ -1,3 +1,8 @@
+---
+title: Getting Help on the AWS Server
+language: en-US
+---
+
 Troubleshooting (uncovering the source of an issue) is a learned art, and it can
 be difficult to know exactly where to start, or even which details are relevant.
 The goal of this guide is to demystify the process, and make it easier for you
