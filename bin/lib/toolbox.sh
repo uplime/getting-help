@@ -3,3 +3,5 @@
 . bin/lib/cfg.sh
 . bin/lib/util.sh
 . bin/lib/log.sh
+
+boilerplate

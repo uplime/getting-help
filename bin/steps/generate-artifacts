@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# This is used in a library imported by toolbox.sh
+# shellcheck disable=SC2034
+deps=(pandoc)
+
 # This file will be checked separately
 # shellcheck disable=SC1091
 . bin/lib/toolbox.sh
@@ -17,24 +21,6 @@ md2html() {
 md2pdf() {
   pandoc pdf "$@"
 }
-
-deps=(pandoc) local_deps=(tput) ci_deps=()
-
-if is_ci; then
-  deps+=("${ci_deps[@]}")
-else
-  deps+=("${local_deps[@]}")
-fi
-
-for dep in "${deps[@]}"; do
-  if ! has "$dep"; then
-    WANTS_COLORS=no die "%s is a required dependency" "$dep"
-  fi
-done
-
-if ! compgen -e | grep -qFx WANTS_COLORS; then
-  export WANTS_COLORS=yes
-fi
 
 for file do
   info "processing file %s" "$file"
