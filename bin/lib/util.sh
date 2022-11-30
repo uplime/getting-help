@@ -42,7 +42,7 @@ install() {
 
       curl -sSLo /tmp/"$prog".tar.gz "$dld_url"
       mkdir -p /tmp/"$prog"
-      tar -C /tmp/"$prog" /tmp/"$prog".tar.gz
+      tar -C /tmp/"$prog" -xvf /tmp/"$prog".tar.gz
 
       find /tmp/"$prog" -type f -name "$prog" \
         -exec sh -c '[ -x "$1" ]' _ {} ';' \
