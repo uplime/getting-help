@@ -1,6 +1,6 @@
 .PHONY: all test build deploy
 
-all: test build deploy
+all: test build deploy clean
 
 test:
 	bin/steps/validate-markdown getting-help.md
@@ -8,3 +8,6 @@ test:
 
 build:
 	bin/steps/generate-artifacts getting-help.md
+
+clean:
+	rm -f getting-help.html getting-help.pdf
