@@ -1,11 +1,9 @@
 log() {
-  local level=${FUNCNAME[1],,}
+  local level=${FUNCNAME[1],,} pre vals sep
 
   if is_ci; then
-    true
+    pre=::%s sep=::
   else
-    local pre vals
-
     if wants_colors; then
       declare -A colors=(
         [red]=$(tput setaf 1) [green]=$(tput setaf 2)
@@ -17,10 +15,12 @@ log() {
       pre="[%s]:" vals=("$level")
     fi
 
-    # This is intentional since it's a wrapper around `printf`.
-    # shellcheck disable=SC2059
-    printf "$pre $1\n" "${vals[@]}" "${@:2}"
+    sep=" "
   fi
+
+  # This is intentional since it's a wrapper around `printf`.
+  # shellcheck disable=SC2059
+  printf "$pre$sep$1\n" "${vals[@]}" "${@:2}"
 }
 
 notice() {

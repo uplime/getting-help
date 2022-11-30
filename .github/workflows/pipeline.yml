@@ -7,9 +7,12 @@ on:
     branches:
       - stable
 
+env:
+  IS_CI: yes
+
 jobs:
   validate:
-    runs-on: ubuntu
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
@@ -17,11 +20,11 @@ jobs:
       - name: Validate and lint repository files.
         id: validate-files
         run: |
-          make test
+          sudo -E make test
 
   build:
     needs: validate
-    runs-on: ubuntu
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
@@ -29,26 +32,4 @@ jobs:
       - name: Build artifacts from markdown file.
         id: build-artifacts
         run: |
-          make build
-
-#  deploy:
-#    needs: build
-#    runs-on: ubuntu
-#
-#    permissions:
-#      id-token: write
-#      contents: read
-#
-#    steps:
-#      - uses: actions/checkout@v3
-#
-#      - name: Configure AWS credentials for the Storage account.
-#        id: configure-aws
-#        uses: aws-actions/configure-aws-credentials@v1
-#        with:
-#          role-to-assume: ${{ secrets.BKT_UPLOAD_ROLE }}
-#          aws-region: ${{ secrets.BKT_REGION }}
-#
-#      - name: Put the build artifacts in their bucket.
-#        run: |
-#          make deploy
+          sudo -E make build

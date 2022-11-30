@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 
-# This is used in a library imported by toolbox.sh
-# shellcheck disable=SC2034
-deps=(typos)
-
 # This file will be checked separately
 # shellcheck disable=SC1091
 . bin/lib/toolbox.sh
+
+if is_ci; then
+  install typos:crate-ci/typos
+else
+  install typos:typos-cli
+fi
 
 for file do
   notice "processing file %s" "$file"

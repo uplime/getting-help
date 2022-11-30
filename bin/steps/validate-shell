@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
 
-# This is used in a library imported by toolbox.sh
-# shellcheck disable=SC2034
-deps=(shellcheck)
-
 # This file will be checked separately
 # shellcheck disable=SC1091
 . bin/lib/toolbox.sh
+
+install shellcheck
 
 for file do
   notice "processing file %s" "$file"

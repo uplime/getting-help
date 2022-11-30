@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 
-# This is used in a library imported by toolbox.sh
-# shellcheck disable=SC2034
-deps=(pandoc)
-
 # This file will be checked separately
 # shellcheck disable=SC1091
 . bin/lib/toolbox.sh
+
+install pandoc
+
+if is_ci; then
+ install pdflatex:texlive-latex-base texlive-latex-extra
+fi
 
 pandoc() {
   command pandoc -o "${2%.*}.$1" -f markdown -t "$1" -s --toc \
