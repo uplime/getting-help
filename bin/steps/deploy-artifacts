@@ -15,4 +15,6 @@ for file do
     error "unable to load file %s" "$file"
     continue
   fi
+
+  aws s3 "$file" s3://"${S3_BKT_DST:-cloudops-docs}"/"$file"
 done
