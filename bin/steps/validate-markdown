@@ -1,68 +1,8 @@
 #!/usr/bin/env bash
 
-has() {
-  hash "$1" 2> /dev/null
-}
-
-is_enabled() {
-  local var_name=${FUNCNAME[1]^^}
-
-  if compgen -e | grep -qFx "$var_name"; then
-    [[ ${!var_name} != no ]]
-  else
-    return 1
-  fi
-}
-
-is_ci() {
-  is_enabled
-}
-
-wants_colors() {
-  is_enabled
-}
-
-log() {
-  local level=${FUNCNAME[1],,}
-
-  if is_ci; then
-    true
-  else
-    local pre vals
-
-    if wants_colors; then
-      declare -A colors=(
-        [red]=$(tput setaf 1) [green]=$(tput setaf 2)
-        [yellow]=$(tput setaf 3) [reset]=$(tput sgr0)
-      )
-
-      pre="%s[%s]:%s" vals=("${colors[$COLOR]}" "$level" "${colors[reset]}")
-    else
-      pre="[%s]:" vals=("$level")
-    fi
-
-    # This is intentional since it's a wrapper around `printf`.
-    # shellcheck disable=SC2059
-    printf "$pre $1\n" "${vals[@]}" "${@:2}"
-  fi
-}
-
-info() {
-  COLOR=green log "$@"
-}
-
-warn() {
-  COLOR=yellow log "$@"
-}
-
-error() {
-  COLOR=red log "$@"
-}
-
-die() {
-  error "$@"
-  exit "${CODE-1}"
-}
+# This file will be checked separately
+# shellcheck disable=SC1091
+. bin/lib/toolbox.sh
 
 deps=(grep typos) local_deps=(tput) ci_deps=()
 
