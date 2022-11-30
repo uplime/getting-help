@@ -5,7 +5,7 @@
 . bin/lib/toolbox.sh
 
 if is_ci; then
-  install crate-ci/typos
+  install typos:crate-ci/typos
 else
   install typos:typos-cli
 fi
