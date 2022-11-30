@@ -30,7 +30,7 @@ install() {
 
       # The os variable is set in another library.
       # shellcheck disable=SC2154
-      dld_url=$(curl -sS "$api_pkg" | jq -rm --arg os "$os" '
+      dld_url=$(curl -sS "$api_pkg" | jq -rM --arg os "$os" '
         .assets[] |
         select(.browser_download_url | contains($os)) |
         .browser_download_url
