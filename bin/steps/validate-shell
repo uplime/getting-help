@@ -4,7 +4,7 @@
 # shellcheck disable=SC1091
 . bin/lib/toolbox.sh
 
-deps=(grep shellcheck) local_deps=(tput) ci_deps=()
+deps=(shellcheck) local_deps=(tput) ci_deps=()
 
 if is_ci; then
   deps+=("${ci_deps[@]}")

@@ -18,7 +18,7 @@ md2pdf() {
   pandoc pdf "$@"
 }
 
-deps=(grep pandoc) local_deps=(tput) ci_deps=()
+deps=(pandoc) local_deps=(tput) ci_deps=()
 
 if is_ci; then
   deps+=("${ci_deps[@]}")
