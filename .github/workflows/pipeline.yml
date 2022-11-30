@@ -9,7 +9,7 @@ on:
 
 jobs:
   validate:
-    runs-on: ubuntu
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
@@ -21,7 +21,7 @@ jobs:
 
   build:
     needs: validate
-    runs-on: ubuntu
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
