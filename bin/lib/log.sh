@@ -2,7 +2,7 @@ log() {
   local level=${FUNCNAME[1],,} pre vals sep
 
   if is_ci; then
-    pre=::%s sep=::
+    pre=::%s sep=" ::" vals=("$level")
   else
     if wants_colors; then
       declare -A colors=(
