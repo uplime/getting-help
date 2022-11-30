@@ -9,5 +9,8 @@ test:
 build:
 	bin/steps/generate-artifacts getting-help.md
 
+deploy:
+	bin/steps/deploy-artifacts getting-help.html getting-help.pdf
+
 clean:
 	rm -f getting-help.html getting-help.pdf
