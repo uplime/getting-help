@@ -3,7 +3,7 @@ has() {
 }
 
 boilerplate() {
-  local dep{s,}
+  local dep
 
   if is_ci; then
     deps+=("${ci_deps[@]}")
