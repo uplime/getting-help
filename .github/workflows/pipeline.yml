@@ -20,7 +20,7 @@ jobs:
       - name: Validate and lint repository files.
         id: validate-files
         run: |
-          sudo -E bash -x make test
+          sudo -E make test
 
   build:
     needs: validate
@@ -32,4 +32,4 @@ jobs:
       - name: Build artifacts from markdown file.
         id: build-artifacts
         run: |
-          sudo -E bash -x make build
+          sudo -E make build
