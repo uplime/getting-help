@@ -23,7 +23,7 @@ md2pdf() {
 }
 
 for file do
-  info "processing file %s" "$file"
+  notice "processing file %s" "$file"
 
   if [[ ! -r $file ]]; then
     error "unable to load file %s" "$file"
@@ -34,11 +34,11 @@ for file do
     die "file %s could not be converted to html" "$file"
   fi
 
-  info "generated html build of file %s" "$file"
+  notice "generated html build of file %s" "$file"
   
   if ! md2pdf "$file"; then
     die "file %s could not be converted to pdf" "$file"
   fi
 
-  info "generated pdf build of file %s" "$file"
+  notice "generated pdf build of file %s" "$file"
 done

@@ -9,7 +9,7 @@ deps=(shellcheck)
 . bin/lib/toolbox.sh
 
 for file do
-  info "processing file %s" "$file"
+  notice "processing file %s" "$file"
 
   if [[ ! -r $file ]]; then
     error "unable to load file %s" "$file"

@@ -23,7 +23,7 @@ log() {
   fi
 }
 
-info() {
+notice() {
   COLOR=green log "$@"
 }
 
