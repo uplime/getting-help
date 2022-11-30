@@ -3,14 +3,14 @@
 all: test build deploy
 
 test:
-	bash -x bin/steps/validate-markdown getting-help.md
-	bash -x bin/steps/validate-shell bin/steps/* bin/lib/*.sh
+	bin/steps/validate-markdown getting-help.md
+	bin/steps/validate-shell bin/steps/* bin/lib/*.sh
 
 build:
-	bash -x bin/steps/generate-artifacts getting-help.md
+	bin/steps/generate-artifacts getting-help.md
 
 deploy:
-	bash -x bin/steps/deploy-artifacts getting-help.html getting-help.pdf
+	bin/steps/deploy-artifacts getting-help.html getting-help.pdf
 
 clean:
 	rm -f getting-help.html getting-help.pdf
