@@ -7,7 +7,7 @@
 install pandoc
 
 if is_ci; then
- install pdflatex:texlive-latex-base xcolors
+ install pdflatex:texlive-latex-base texlive-latex-extra
 fi
 
 pandoc() {
