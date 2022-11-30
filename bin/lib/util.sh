@@ -49,12 +49,12 @@ install() {
         -exec sh -c 'cp -f "$1" /usr/local/bin' _ {} ';' \
         -quit
     elif [[ $os = darwin* ]] && has brew; then
-      brew install "$prog"
+      brew install "$pkg"
     elif [[ $os = linux* ]]; then
       if has apt; then
-        apt -qq install "$prog"
+        apt -qq install "$pkg"
       elif has yum; then
-        yum install "$prog"
+        yum install "$pkg"
       fi
     else
       die "please install the %s package" "$pkg"
