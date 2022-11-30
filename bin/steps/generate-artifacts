@@ -6,6 +6,10 @@
 
 install pandoc
 
+if is_ci; then
+ install pdflatex:texlive-latex-base
+fi
+
 pandoc() {
   command pandoc -o "${2%.*}.$1" -f markdown -t "$1" -s --toc \
     "${extra_args[@]}" "$2"
