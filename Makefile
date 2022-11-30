@@ -1,6 +1,6 @@
-.PHONY: all test build deploy
+.PHONY: all test build deploy clean
 
-all: test build deploy clean
+all: test build deploy
 
 test:
 	bin/steps/validate-markdown getting-help.md
