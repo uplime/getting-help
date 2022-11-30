@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+# This file will be checked separately
+# shellcheck disable=SC1091
+. bin/lib/toolbox.sh
+
+deps=(grep typos) local_deps=(tput) ci_deps=()
+
+if is_ci; then
+  deps+=("${ci_deps[@]}")
+else
+  deps+=("${local_deps[@]}")
+fi
+
+for dep in "${deps[@]}"; do
+  if ! has "$dep"; then
+    WANTS_COLORS=no die "%s is a required dependency" "$dep"
+  fi
+done
+
+if ! compgen -e | grep -qFx WANTS_COLORS; then
+  export WANTS_COLORS=yes
+fi
+
+for file do
+  info "processing file %s" "$file"
+
+  if [[ ! -r $file ]]; then
+    error "unable to load file %s" "$file"
+    continue
+  elif ! shellcheck -s bash "$file"; then
+    die "file %s had one or more problems in it" "$file"
+  fi
+done
