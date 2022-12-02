@@ -10,7 +10,7 @@ build:
 	bin/steps/build-artifacts getting-help.md
 
 deploy:
-	bin/steps/deploy-artifacts getting-help.html getting-help.pdf
+	bin/steps/deploy-artifacts build/*
 
 clean:
 	rm -f getting-help.html getting-help.pdf

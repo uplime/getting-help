@@ -11,7 +11,10 @@ if is_ci; then
 fi
 
 pandoc() {
-  command pandoc -o "${2%.*}.$1" -f markdown -t "$1" -s --toc \
+  local out=${2##*/}
+  mkdir -p build
+
+  command pandoc -o build/"${out%.*}.$1" -f markdown -t "$1" -s --toc \
     "${extra_args[@]}" "$2"
 }
 

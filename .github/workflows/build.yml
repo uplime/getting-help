@@ -33,3 +33,10 @@ jobs:
         id: build-artifacts
         run: |
           sudo -E make build
+
+      - name: Setup the build cache.
+        id: cache-artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: cache-artifacts
+          path: build

@@ -17,6 +17,20 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Configure AWS credentials for the Storage account.
+        id: configure-aws
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE }}
+          aws-region: us-west-2
+
+      - name: Setup the build cache.
+        id: cache-artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: cache-artifacts
+          path: build
+
       - name: Deploy build artifacts.
         id: deploy-artifacts
         run: |
