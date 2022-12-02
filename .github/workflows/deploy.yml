@@ -3,7 +3,7 @@
 name: getting-help-deploy
 
 on:
-  merge:
+  push:
     branches:
       - stable
 
