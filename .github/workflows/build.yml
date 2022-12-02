@@ -1,6 +1,6 @@
 ---
 
-name: getting-help
+name: getting-help-build
 
 on:
   pull_request:
@@ -11,19 +11,19 @@ env:
   IS_CI: yes
 
 jobs:
-  validate:
+  test:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
 
-      - name: Validate and lint repository files.
-        id: validate-files
+      - name: Test and lint repository files.
+        id: test-files
         run: |
           sudo -E make test
 
   build:
-    needs: validate
+    needs: test
     runs-on: ubuntu-latest
 
     steps:
