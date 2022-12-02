@@ -1,0 +1,23 @@
+---
+
+name: getting-help-test
+
+on:
+  pull_request:
+    branches:
+      - stable
+
+env:
+  IS_CI: yes
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Test and lint repository files.
+        id: test-files
+        run: |
+          sudo -E make test
