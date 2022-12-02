@@ -1,0 +1,23 @@
+---
+
+name: getting-help-deploy
+
+on:
+  push:
+    branches:
+      - stable
+
+env:
+  IS_CI: yes
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Deploy build artifacts.
+        id: deploy-artifacts
+        run: |
+          sudo -E make deploy
