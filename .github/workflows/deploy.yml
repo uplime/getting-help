@@ -30,10 +30,9 @@ jobs:
 
       - name: Setup the build cache.
         id: cache-artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/download-artifact@v3
         with:
           name: cache-artifacts
-          path: build
 
       - name: Deploy build artifacts.
         id: deploy-artifacts
