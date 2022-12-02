@@ -26,8 +26,8 @@ jobs:
         id: set-cache-artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: cache-artifacts
-          path: build
+          name: cache-build-artifacts
+          path: build/
 
   deploy:
     needs: build
@@ -51,7 +51,16 @@ jobs:
         id: ret-cache-artifacts
         uses: actions/download-artifact@v3
         with:
-          name: cache-artifacts
+          name: cache-build-artifacts
+          path: build/
+
+      - name: Debug
+        run: |
+          ls .
+          ls build
+          ls build/*
+          find . -name build -type d
+          find . -name 'getting-help.*' -type f
 
       - name: Deploy build artifacts.
         id: deploy-artifacts
