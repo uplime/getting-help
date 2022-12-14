@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# This file will be checked separately.
+# shellcheck disable=SC1091
+. bin/lib/log.sh
+
+for file do
+  notice "processing file %s" "$file"
+
+  if [[ ! -r $file ]]; then
+    die "unable to load file %s" "$file"
+  fi
+
+  # This warning does not apply since it's an Awk field.
+  # shellcheck disable=SC2016
+  awk_prog='/^Copyright/ && $3 < date { exit(1) }'
+  date=$(date +%Y)
+
+  if ! awk -v date="$date" "$awk_prog" "$file"; then
+    die "license %s is out of date" "$file"
+  fi
+done

@@ -6,8 +6,7 @@ test:
 	bin/steps/install-test-dependencies
 	bin/steps/test-shell bin/steps/* bin/lib/*.sh
 	bin/steps/test-markdown getting-help.md README.md
-#	bin/steps/test-makefile Makefile
-#	bin/steps/test-license LICENSE
+	bin/steps/test-license LICENSE
 #	bin/steps/test-yaml .github/workflows/*.yml
 
 build:
