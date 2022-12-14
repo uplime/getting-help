@@ -20,6 +20,7 @@ jobs:
         if: failure()
         with:
           url: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          name: Cloud Droid
           level: error
           message: The submitted PR did not pass required tests.
           format: true
@@ -28,6 +29,7 @@ jobs:
         if: success()
         with:
           url: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          name: Cloud Droid
           level: notice
           message: The submitted PR successfully passed all required tests.
           format: true
