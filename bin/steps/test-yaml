@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# This file will be checked separately.
+# shellcheck disable=SC1091
+. bin/lib/ci.sh
+. bin/lib/log.sh
+
+for file do
+  notice "processing file %s" "$file"
+
+  if [[ ! -r $file ]]; then
+    die "unable to load file %s" "$file"
+  fi
+
+  yamllint_args=(-s -c lint.yml)
+
+  if is-ci; then
+    yamllint_args+=(-f github)
+  fi
+
+  yamllint "${yamllint_args[@]}" "$file"
+done

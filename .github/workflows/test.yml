@@ -22,7 +22,7 @@ jobs:
           url: ${{ secrets.DISCORD_WEBHOOK_URL }}
           level: error
           message: The submitted PR did not pass required tests.
-          format: yes
+          format: true
 
       - uses: uplime/discord-webhook@v1.1
         if: success()
@@ -30,4 +30,4 @@ jobs:
           url: ${{ secrets.DISCORD_WEBHOOK_URL }}
           level: notice
           message: The submitted PR successfully passed all required tests.
-          format: yes
+          format: true
