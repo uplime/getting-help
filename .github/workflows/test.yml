@@ -4,20 +4,31 @@ name: getting-help-test
 
 on:
   pull_request:
-    branches:
-      - stable
-
-env:
-  IS_CI: yes
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - uses: actions/checkout@v3
 
       - name: Test and lint repository files.
-        id: test-files
+        id: test-lint-check
         run: |
           sudo -E make test
+
+      - uses: uplime/discord-webhook@v1.1
+        if: failure()
+        with:
+          url: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          level: error
+          message: The submitted PR did not pass required tests.
+          format: yes
+
+      - uses: uplime/discord-webhook@v1.1
+        if: success()
+        with:
+          url: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          level: notice
+          message: The submitted PR successfully passed all required tests.
+          format: yes

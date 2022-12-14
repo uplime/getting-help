@@ -1,17 +1,14 @@
 #!/usr/bin/env bash
 
-# This file will be checked separately
+# This file will be checked separately.
 # shellcheck disable=SC1091
-. bin/lib/toolbox.sh
-
-install shellcheck
+. bin/lib/log.sh
 
 for file do
   notice "processing file %s" "$file"
 
   if [[ ! -r $file ]]; then
-    error "unable to load file %s" "$file"
-    continue
+    die "unable to load file %s" "$file"
   elif ! shellcheck -s bash "$file"; then
     die "file %s had one or more problems in it" "$file"
   fi

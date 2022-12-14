@@ -1,21 +1,14 @@
 #!/usr/bin/env bash
 
-# This file will be checked separately
+# This file will be checked separately.
 # shellcheck disable=SC1091
-. bin/lib/toolbox.sh
-
-if is_ci; then
-  install typos:crate-ci/typos
-else
-  install typos:typos-cli
-fi
+. bin/lib/log.sh
 
 for file do
   notice "processing file %s" "$file"
 
   if [[ ! -r $file ]]; then
-    error "unable to load file %s" "$file"
-    continue
+    die "unable to load file %s" "$file"
   elif ! typos "$file"; then
     die "file %s had typos in it" "$file"
   fi

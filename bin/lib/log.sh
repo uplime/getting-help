@@ -1,20 +1,21 @@
+# This file will be checked separately.
+# shellcheck disable=SC1091
+. bin/lib/ci.sh
+
 log() {
   local level=${FUNCNAME[1],,} pre vals sep
 
-  if is_ci; then
-    pre=::%s sep=" ::" vals=("$level")
+  if is-ci; then
+    pre=::%s
+    sep=" ::"
+    vals=("$level")
   else
-    if wants_colors; then
-      declare -A colors=(
-        [red]=$(tput setaf 1) [green]=$(tput setaf 2)
-        [yellow]=$(tput setaf 3) [reset]=$(tput sgr0)
-      )
+    declare -A colors=(
+      [red]=$(tput setaf 1) [green]=$(tput setaf 2)
+      [yellow]=$(tput setaf 3) [reset]=$(tput sgr0)
+    )
 
-      pre="%s[%s]:%s" vals=("${colors[$COLOR]}" "$level" "${colors[reset]}")
-    else
-      pre="[%s]:" vals=("$level")
-    fi
-
+    pre="%s[%s]:%s" vals=("${colors[$COLOR]}" "$level" "${colors[reset]}")
     sep=" "
   fi
 
@@ -27,7 +28,7 @@ notice() {
   COLOR=green log "$@"
 }
 
-warn() {
+warning() {
   COLOR=yellow log "$@"
 }
 
