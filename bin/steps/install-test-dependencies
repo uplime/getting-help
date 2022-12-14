@@ -5,7 +5,7 @@
 . bin/lib/util.sh
 . bin/lib/log.sh
 
-needed_pkgs=(shellcheck)
+needed_pkgs=(shellcheck yamllint)
 
 # The os type is determined in a separate module.
 # shellcheck disable=SC2154
@@ -19,7 +19,7 @@ elif [[ $os = linux ]]; then
   # Assume Ubuntu for the moment.
   install_cmd=(apt install -y)
 
-  # Install the typos-cli utility.
+  # Install the typos-cli utility, since there isn't a Linux package.
   api_root=https://api.github.com
   api_pkg=$api_root/repos/crate-ci/typos/releases/latest
 
