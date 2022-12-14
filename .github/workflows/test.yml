@@ -11,6 +11,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Install repository dependencies.
+        id: install-test-dependencies
+        run: |
+          sudo apt install -y shellcheck yamllint
+          sudo -E bin/tools/install-typos-cli
+
       - name: Test and lint repository files.
         id: test-lint-check
         run: |

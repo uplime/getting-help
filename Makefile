@@ -3,7 +3,6 @@
 all: test build deploy
 
 test:
-	bin/steps/install-test-dependencies
 	bin/steps/test-shell bin/steps/* bin/lib/*.sh
 	bin/steps/test-markdown getting-help.md README.md
 	bin/steps/test-license LICENSE
