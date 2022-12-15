@@ -1,0 +1,32 @@
+---
+
+name: discord-webhook-call
+
+on:
+  workflow_call:
+    inputs:
+      level:
+        required: true
+        default: notice
+        type: string
+
+      message:
+        required: true
+        type: string
+
+    secrets:
+      DISCORD_WEBHOOK_URL:
+        required: true
+
+jobs:
+  call-webhook:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - uses: uplime/discord-webhook@v1.1
+        with:
+          url: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          name: Cloud Droid
+          level: ${{ inputs.level }}
+          message: ${{ inputs.message }}
+          format: true

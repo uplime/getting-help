@@ -28,11 +28,8 @@ jobs:
         with:
           level: error
           message: The submitted PR did not pass required tests.
-        secrets: inherit
 
       - uses: ./.github/workflows/webhook.yml
         if: success()
         with:
-          level: error
           message: The submitted PR successfully passed all required tests.
-        secrets: inherit
