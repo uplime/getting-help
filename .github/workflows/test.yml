@@ -23,7 +23,7 @@ jobs:
         run: |
           sudo -E make test
 
-      - uses: 
+      - uses: uplime/discord-webhook@v1.1
         if: failure()
         with:
           url: ${{ secrets.DISCORD_WEBHOOK_URL }}
