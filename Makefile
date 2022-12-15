@@ -13,7 +13,7 @@ build:
 	bin/steps/build-webpage getting-help.md
 
 deploy:
-#	bin/steps/deploy-artifacts build/*
+	bin/steps/deploy-artifacts build/getting-help.*
 
 clean:
 	rm -rf build
