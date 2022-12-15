@@ -1,27 +1,28 @@
 ---
 
-name: getting-help-test
+name: getting-help-build-deploy
 
 on:
-  pull_request:
+  push:
+    branches:
+      - stable
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-22.04
 
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install dependencies required for testing.
-        id: install-test-dependencies
+      - name: Install dependencies required for building.
+        id: install-build-dependencies
         run: |
-          sudo apt install -y shellcheck yamllint
-          sudo -E bin/tools/install-typos-cli
+          sudo apt install -y texlive-latex-base texlive-latex-extra pandoc
 
-      - name: Test and lint repository files.
-        id: test-lint-check
+      - name: Build document artifacts for deployment.
+        id: build-artifacts
         run: |
-          sudo -E make test
+          sudo -E make build
 
       - uses: uplime/discord-webhook@v1.1
         if: failure()
@@ -29,7 +30,7 @@ jobs:
           url: ${{ secrets.DISCORD_WEBHOOK_URL }}
           name: Cloud Droid
           level: error
-          message: The submitted PR did not pass required tests.
+          message: There was a problem building the documents.
           format: true
 
       - uses: uplime/discord-webhook@v1.1
@@ -38,5 +39,5 @@ jobs:
           url: ${{ secrets.DISCORD_WEBHOOK_URL }}
           name: Cloud Droid
           level: notice
-          message: The submitted PR successfully passed all required tests.
+          message: The documents were built successfully.
           format: true

@@ -1,0 +1,23 @@
+#!/bin/bash
+
+api_root=https://api.github.com
+api_pkg=$api_root/repos/crate-ci/typos/releases/latest
+
+dld_url=$(curl -sS "$api_pkg" | jq -rM '
+  .assets[] |
+  select(.browser_download_url | contains("linux")) |
+  .browser_download_url
+')
+
+if [[ -z $dld_url ]]; then
+  die "unable to find suitable release for package %s" "$pkg"
+fi
+
+curl -sSLo /tmp/typos-cli.tar.gz "$dld_url"
+mkdir -p /tmp/typos-cli
+tar -C /tmp/typos-cli -xf /tmp/typos-cli.tar.gz
+
+find /tmp/typos-cli -type f -name typos \
+  -exec sh -c '[ -x "$1" ]' _ {} ';' \
+  -exec sh -c 'cp -f "$1" /usr/local/bin' _ {} ';' \
+  -quit

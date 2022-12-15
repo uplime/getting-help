@@ -1,0 +1,5 @@
+---
+
+rules:
+  truthy:
+    check-keys: false
