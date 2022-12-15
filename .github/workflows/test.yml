@@ -23,13 +23,20 @@ jobs:
         run: |
           sudo -E make test
 
-      - uses: ./.github/workflows/webhook.yml
+      - uses: 
         if: failure()
         with:
+          url: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          name: Cloud Droid
           level: error
           message: The submitted PR did not pass required tests.
+          format: true
 
-      - uses: ./.github/workflows/webhook.yml
+      - uses: uplime/discord-webhook@v1.1
         if: success()
         with:
+          url: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          name: Cloud Droid
+          level: notice
           message: The submitted PR successfully passed all required tests.
+          format: true
