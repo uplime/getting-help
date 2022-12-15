@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# This file will be checked separately.
+# shellcheck disable=SC1091
+. bin/lib/log.sh
+
+for file do
+  notice "processing file %s" "$file"
+
+  if [[ ! -r $file ]]; then
+    die "unable to load file %s" "$file"
+  elif ! bin/tools/pandoc-wrapper pdf "$file"; then
+    die "file %s had one or more problems in it" "$file"
+  fi
+done

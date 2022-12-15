@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+out=${2##*/}
+mkdir -p build
+pandoc -o build/"${out%.*}.$1" -f markdown -t "$1" -s --toc "${@:3}" "$2"

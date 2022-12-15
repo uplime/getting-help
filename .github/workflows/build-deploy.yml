@@ -1,0 +1,43 @@
+---
+
+name: getting-help-build-deploy
+
+on:
+  push:
+    branches:
+      - stable
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies required for building.
+        id: install-build-dependencies
+        run: |
+          sudo apt install -y texlive-latex-base texlive-latex-extra pandoc
+
+      - name: Build document artifacts for deployment.
+        id: build-artifacts
+        run: |
+          sudo -E make build
+
+      - uses: uplime/discord-webhook@v1.1
+        if: failure()
+        with:
+          url: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          name: Cloud Droid
+          level: error
+          message: There was a problem building the documents.
+          format: true
+
+      - uses: uplime/discord-webhook@v1.1
+        if: success()
+        with:
+          url: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          name: Cloud Droid
+          level: notice
+          message: The documents were built successfully.
+          format: true

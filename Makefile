@@ -9,10 +9,11 @@ test:
 	bin/steps/test-yaml lint.yml .github/workflows/test.yml
 
 build:
-#	bin/steps/build-artifacts getting-help.md
+	bin/steps/build-pdf getting-help.md
+	bin/steps/build-webpage getting-help.md
 
 deploy:
 #	bin/steps/deploy-artifacts build/*
 
 clean:
-	rm -f build
+	rm -rf build
