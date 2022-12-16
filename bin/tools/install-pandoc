@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# These files will be checked separately.
+# shellcheck disable=SC1091
+. bin/lib/log.sh
+. bin/lib/util.sh
+
+api_root=https://api.github.com
+api_pkg=$api_root/repos/jgm/pandoc/releases/latest
+
+dld_url=$(curl -sS "$api_pkg" | jq -rM '
+  .assets[] |
+  select(.name | endswith("arm64.deb")) |
+  .browser_download_url
+')
+
+if [[ -z $dld_url ]]; then
+  die "unable to find suitable release for typos-cli"
+fi
+
+try curl -sSLo /tmp/pandoc.deb "$dld_url"
+try dpkg -i /tmp/pandoc.deb

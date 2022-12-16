@@ -17,7 +17,8 @@ jobs:
       - name: Install dependencies required for building.
         id: install-build-dependencies
         run: |
-          sudo apt install -y texlive-latex-base texlive-latex-extra pandoc
+          sudo apt install -y texlive-latex-base texlive-latex-extra
+          sudo -E bin/tools/install-pandoc
 
       - name: Build document artifacts for deployment.
         id: build-artifacts
