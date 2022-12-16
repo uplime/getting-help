@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-# This file will be checked separately
+# These files will be checked separately.
 # shellcheck disable=SC1091
 . bin/lib/log.sh
+. bin/lib/util.sh
 
 for file do
   notice "processing file %s" "$file"
@@ -12,5 +13,5 @@ for file do
     continue
   fi
 
-  aws s3 cp "$file" s3://"${S3_BKT_DST-aws-srv-doc-bkt}"/"${file##*/}"
+  try aws s3 cp "$file" s3://"${S3_BKT_DST-aws-srv-doc-bkt}"/"${file##*/}"
 done
