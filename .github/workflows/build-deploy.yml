@@ -28,7 +28,7 @@ jobs:
         id: store-artifact-cache
         uses: actions/upload-artifact@v3
         with:
-          name: store-artifacts-cache
+          name: store-artifact-cache
           path: build
 
       - uses: uplime/discord-webhook@v1.1
@@ -73,10 +73,10 @@ jobs:
           aws-region: us-west-2
 
       - name: Use the built cache.
-        id: store-artifacts-cache
+        id: store-artifact-cache
         uses: actions/download-artifact@v3
         with:
-          name: store-artifacts-cache
+          name: store-artifact-cache
 
       - name: Deploy build artifacts.
         id: deploy-artifacts
