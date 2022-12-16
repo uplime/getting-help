@@ -11,11 +11,66 @@ and the community as a whole to fix your problem.
 ## [A Hard Truth](#a-hard-truth)
 
 Sometimes, your question may not get answered or your problem may not get
-solved. This community has many knowledgable people (both regarding AWS and
-outside of it), and ideally, would be able to provide solutions to every post.
-However, for any number of reasons, the possibility still exists. Remember, this
-is a community-run server and everybody here is a volunteer, including AWS
-employees.
+solved. This community has many knowledgable people (both regarding AWS topics
+and beyond it), and ideally, would be able to provide solutions to every post.
+However, for any number of reasons, the possibility of your question going
+unanswered still exists. Remember, this is a community-run server and everybody
+here is a volunteer, including AWS employees.
+
+## [Don't Ask to Ask](#dont-ask-to-ask)
+
+For new engineers and developers, there is a commonly-held belief that they
+should ask for permission in a help channel, before asking their intended
+question. For example, upon joining a help channel, a user might ask one of the
+following questions:
+
+> NewUser42: Can I ask my question about EC2 here?
+> NewUser42: Is anybody familiar with S3 buckets?
+> NewUser42: Can anybody help me with DNS?
+
+This is usually done with good intentions; the questioner might not want to
+intrude on an on-going conversation, and also might not be confident they are
+asking in the appropriate spot. It could even be the questioner just considers
+it more polite. Whatever the reason, it's often less effective than just asking
+the question they wanted to originally ask, for several reasons:
+
+  - Help channels expect to have users looking for help and asking questions to
+    resolve their issue. Having to ask for permission first would just create
+    unnecessary red tape.
+
+  - It increases the noise in the channel's signal-to-noise ratio. This means
+    that the amount of unnecessary content in the channel has increased, and
+    takes away from the useful content.
+
+  - The channel members are usually in the channel to answer questions somebody
+    might need help with. Repeating multiple times that it is fine to ask a
+    question in the channel can be tiresome, especially when it isn't required
+    in the first place.
+
+  - Nobody can say for sure if they can help with an issue, until they know the
+    details of it. Hiding it behind another question just increases the amount
+    of time the questioner will have to wait for the actual answer they need. 
+
+To summarize, it is always better [netiquette][netiquette] to just ask the
+intended question immediately. The worst case scenario is the questioner is in
+the wrong place, however this has a simple fix: copying the question and pasting
+it into the proper place.
+
+## [The XY Problem](#the-xy-problem)
+
+Once you have your intended question, it is important to take a step back and
+think about what the actual goal is. When trying to solve a problem or implement
+something new, it is easy to focus in on one particular aspect, and what you're
+doing to solve it. However, just because it is a possible solution, doesn't mean
+it is a good solution, or even a solution that makes sense for your usecase.
+
+As long as you aren't constrained to a certain solution, you should always ask
+for a solution to your main goal. Then you can list your proposed solution as
+what you've tried or what you think you should try. This way, you can get
+relevant feedback, suggestions, and improvements for what you need to implement
+and how you should do it. Even if it turns out that the solution you originally
+considered is the right way to do it, you now have confirmation and don't need
+to wonder.
 
 ## [Common Troubleshooting Methods](#common-troubleshooting-methods)
 
@@ -154,6 +209,7 @@ leisure.
   - [Don't ask to ask, just ask][dont-ask]
   - [The XY Problem][xy]
 
+[netiquette]: https://tilt.colostate.edu/netiquette-ground-rules-for-online-discussions/
 [multi-searches]: https://support.google.com/websearch/answer/2466433
 [python-docs]: https://twitter.com/ChrisShaver64/status/1072516363258880005
 [denver-coder]: https://xkcd.com/979/
