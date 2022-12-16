@@ -64,7 +64,6 @@ jobs:
         id: install-build-dependencies
         run: |
           sudo apt install -y curl gpg
-          bin/tools/install-aws-cli
 
       - name: Configure AWS credentials for the Storage account.
         id: configure-aws-credentials
