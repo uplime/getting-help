@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# These files will be checked separately.
+# shellcheck disable=SC1091
+. bin/lib/log.sh
+. bin/lib/util.sh
+
 api_root=https://api.github.com
 api_pkg=$api_root/repos/crate-ci/typos/releases/latest
 
@@ -10,14 +15,16 @@ dld_url=$(curl -sS "$api_pkg" | jq -rM '
 ')
 
 if [[ -z $dld_url ]]; then
-  die "unable to find suitable release for package %s" "$pkg"
+  die "unable to find suitable release for typos-cli"
 fi
 
-curl -sSLo /tmp/typos-cli.tar.gz "$dld_url"
+try curl -sSLo /tmp/typos-cli.tar.gz "$dld_url"
 mkdir -p /tmp/typos-cli
 tar -C /tmp/typos-cli -xf /tmp/typos-cli.tar.gz
 
-find /tmp/typos-cli -type f -name typos \
+# This is intentional since it's evaluated dynamically by `sh`.
+# shellcheck disable=SC2016
+try find /tmp/typos-cli -type f -name typos \
   -exec sh -c '[ -x "$1" ]' _ {} ';' \
   -exec sh -c 'cp -f "$1" /usr/local/bin' _ {} ';' \
   -quit
