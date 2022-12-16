@@ -3,7 +3,7 @@
 all: test build deploy
 
 test:
-	bin/steps/test-shell bin/steps/* bin/lib/*.sh bin/tools/*
+	CB=bin/steps/test-shell bin/tools/for-each sh bash
 	bin/steps/test-markdown getting-help.md README.md
 	bin/steps/test-license LICENSE
 	bin/steps/test-yaml lint.yml .github/workflows/test.yml

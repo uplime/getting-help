@@ -18,7 +18,7 @@ try() {
 }
 
 is-a() {
-  [[ $1 = *."$2" ]] && head -1 "$1" | grep -q '^#!.*'"${3-"$2"}"'$'
+  [[ $1 = *."$2" ]] || head -1 "$1" | grep -q '^#!.*'"${3-"$2"}"'$'
 }
 
 # The os variable is used by another library.
