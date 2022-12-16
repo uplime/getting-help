@@ -10,7 +10,7 @@ api_pkg=$api_root/repos/jgm/pandoc/releases/latest
 
 dld_url=$(curl -sS "$api_pkg" | jq -rM '
   .assets[] |
-  select(.name | endswith("arm64.deb")) |
+  select(.name | endswith("amd64.deb")) |
   .browser_download_url
 ')
 
