@@ -18,5 +18,5 @@ for file do
     yamllint_args+=(-f github)
   fi
 
-  yamllint "${yamllint_args[@]}" "$file"
+  try yamllint "${yamllint_args[@]}" "$file"
 done

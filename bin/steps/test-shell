@@ -9,7 +9,7 @@ for file do
 
   if [[ ! -r $file ]]; then
     die "unable to load file %s" "$file"
-  elif ! shellcheck -s bash "$file"; then
-    die "file %s had one or more problems in it" "$file"
   fi
+
+  try shellcheck -s bash "$file"
 done

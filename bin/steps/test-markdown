@@ -9,10 +9,9 @@ for file do
 
   if [[ ! -r $file ]]; then
     die "unable to load file %s" "$file"
-  elif ! typos "$file"; then
-    die "file %s had typos in it" "$file"
   fi
 
+  try typos "$file"
   idx=0
 
   # Warning does not apply here, since the file is only being read from and not
