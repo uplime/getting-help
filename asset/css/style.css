@@ -6,7 +6,7 @@ body {
   font-family: Arial;
   font-size: 1rem;
   background: rgb(241, 236, 204);
-  color: rgb(0, 0, 0);
+  color: rgb(60, 60, 60);
   margin: 0;
   padding: 0;
   display: flex;
@@ -36,7 +36,7 @@ p:first-of-type {
  */
 
 a:link, a:visited, a:hover, a:active {
-  color: rgb(135, 88, 255);
+  color: rgb(80, 120, 220);
 }
 
 a:after {
@@ -137,6 +137,7 @@ h2 ~ ul {
  * Dark mode
  */
 
+/*
 @media (prefers-color-scheme: dark) {
   body {
     background: rgb(24, 24, 24);
@@ -147,6 +148,7 @@ h2 ~ ul {
     color: rgb(92, 184, 228);
   }
 }
+*/
 
 /*
  * Lime mode
