@@ -9,8 +9,7 @@ for file do
   notice "processing file %s" "$file"
 
   if [[ ! -r $file ]]; then
-    error "unable to load file %s" "$file"
-    continue
+    die "unable to load file %s" "$file"
   fi
 
   try aws s3 cp "$file" s3://"${S3_BKT_DST-aws-srv-doc-bkt}"/"${file##*/}"
