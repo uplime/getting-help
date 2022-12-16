@@ -4,9 +4,9 @@ all: test build deploy
 
 test:
 	CB=bin/steps/test-shell bin/tools/for-each sh bash
-	bin/steps/test-markdown getting-help.md README.md
+	CB=bin/steps/test-markdown bin/tools/for-each md
+	CB=bin/steps/test-yaml bin/tools/for-each yml
 	bin/steps/test-license LICENSE
-	bin/steps/test-yaml lint.yml .github/workflows/test.yml
 
 build:
 	bin/steps/build-pdf getting-help.md
