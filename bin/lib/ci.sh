@@ -1,3 +1,4 @@
 is-ci() {
-  compgen -e | grep -qFx GITHUB_ACTIONS && [[ $GITHUB_ACTIONS = true ]]
+  compgen -e GITHUB_ACTIONS | grep -qFx GITHUB_ACTIONS &&
+    [[ $GITHUB_ACTIONS = true ]]
 }
