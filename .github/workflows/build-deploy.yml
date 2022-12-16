@@ -81,6 +81,9 @@ jobs:
       - name: Deploy build artifacts.
         id: deploy-artifacts
         run: |
+          ls
+          ls build
+          find . -name 'getting-help.*' -type f
           sudo -E make deploy
 
       - uses: uplime/discord-webhook@v1.1
