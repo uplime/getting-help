@@ -12,5 +12,7 @@ for file do
     die "unable to load file %s" "$file"
   fi
 
-  try bin/tools/pandoc-wrapper html "$file"
+  webpage_opts=(--embed-resources -c asset/css/style.css)
+
+  try bin/tools/pandoc-wrapper html "$file" "${webpage_opts[@]}"
 done
