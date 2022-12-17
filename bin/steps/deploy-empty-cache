@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# These files will be checked separately.
+# shellcheck disable=SC1091
+. bin/lib/log.sh
+. bin/lib/util.sh
+
+cf_dist_id=$(bin/tools/aws-wrapper cloudfront list-distributions | jq -rM '
+  .DistributionList.Items[] |
+  select(.Aliases.Items[] | index("cloudo.ps")) | .Id
+')
+
+if [[ -z $cf_dist_id ]]; then
+  die "Unable to determine Cloudfront distribution"
+fi
+
+try bin/tools/aws-wrapper cloudfront create-invalidation \
+  --paths "/getting-help.*" --distribution-id "$cf_dist_id" >/dev/null

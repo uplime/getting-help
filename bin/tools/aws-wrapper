@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+aws --output=json --region=us-east-1 --color=off "$@"

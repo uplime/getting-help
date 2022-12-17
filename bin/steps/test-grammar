@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+# These files will be checked separately.
+# shellcheck disable=SC1091
+. bin/lib/log.sh
+. bin/lib/util.sh
+
+exclude=("(" "(" -name .git -o -name build ")" -type d -prune ")")
+include=("(" -type f -print0 ")")
+
+find . "${exclude[@]}" -o "${include[@]}" | {
+  # Warning does not apply here, since the file is only being read from and not
+  # written to.
+  # shellcheck disable=SC2094
+  while IFS= read -rd "" file; do
+    notice "processing file %s" "$file"
+    files+=("$file") idx=0
+
+    while IFS= read -r line; do
+      (( idx += 1 ))
+
+      if [[ $line = *@(" "|$'\t') ]]; then
+        warning "file %s:%d has trailing space characters" "$file" "$idx"
+      fi
+    done < "$file"
+  done
+
+  try typos "${files[@]}"
+}
