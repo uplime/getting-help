@@ -14,6 +14,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - uses: uplime/discord-webhook@v1.1
+        with:
+          url: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          name: Cloud Droid
+          level: notice
+          message: Beginning the build process for the documents.
+          format: true
+
       - name: Install dependencies required for building.
         id: install-build-dependencies
         run: |
@@ -60,6 +68,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
+      - uses: uplime/discord-webhook@v1.1
+        with:
+          url: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          name: Cloud Droid
+          level: notice
+          message: Deploying the built documents.
+          format: true
 
       - name: Install dependencies required for building.
         id: install-build-dependencies
