@@ -8,10 +8,7 @@
 for file do
   notice "processing file %s" "$file"
 
-  if [[ ! -r $file ]]; then
-    die "unable to load file %s" "$file"
+  if [[ ! -x $file ]]; then
+    die "file %s is not executable" "$file"
   fi
-
-  try bin/tools/aws-wrapper s3 cp "$file" \
-    s3://"${S3_BKT_DST-aws-srv-docs}"/"${file##*/}"
 done

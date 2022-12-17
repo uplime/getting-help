@@ -12,6 +12,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - uses: uplime/discord-webhook@v1.1
+        with:
+          url: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          name: Cloud Droid
+          level: notice
+          message: Beginning tests for submitted PR.
+          format: true
+
       - name: Install dependencies required for testing.
         id: install-test-dependencies
         run: |

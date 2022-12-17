@@ -12,9 +12,6 @@ for file do
     die "unable to load file %s" "$file"
   fi
 
-  try typos "$file"
-  idx=0
-
   # Warning does not apply here, since the file is only being read from and not
   # written to.
   # shellcheck disable=SC2094
@@ -27,11 +24,7 @@ for file do
     fi
 
     if (( has_line_limit && line_len > 80 )); then
-      warn "line %d in file %s is longer than 80 characters" "$idx" "$file"
-    fi
-
-    if [[ $line = *@(" "|$'\t') ]]; then
-      warn "line %d in file %s has trailing space characters" "$idx" "$file"
+      warning "line %d in file %s is longer than 80 characters" "$idx" "$file"
     fi
   done < "$file"
 done

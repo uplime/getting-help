@@ -49,7 +49,7 @@ the question they wanted to originally ask, for several reasons:
 
   - Nobody can say for sure if they can help with an issue, until they know the
     details of it. Hiding it behind another question just increases the amount
-    of time the questioner will have to wait for the actual answer they need. 
+    of time the questioner will have to wait for the actual answer they need.
 
 To summarize, it is always better [netiquette][netiquette] to just ask the
 intended question immediately. The worst case scenario is the questioner is in

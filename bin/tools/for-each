@@ -5,7 +5,7 @@
 . bin/lib/util.sh
 
 find . "(" -type d -name .git -prune ")" -o "(" -type f -print0 ")" | {
-  while IFS= read -rd '' file; do
+  while IFS= read -rd "" file; do
     if is-a "$file" "$@"; then
       files+=("$file")
     fi

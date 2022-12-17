@@ -3,10 +3,12 @@
 all: test build deploy
 
 test:
+	bin/steps/test-executables bin/steps/* bin/tools/*
+	bin/steps/test-license LICENSE
+	bin/steps/test-grammar
 	CB=bin/steps/test-shell bin/tools/for-each sh bash
 	CB=bin/steps/test-markdown bin/tools/for-each md
 	CB=bin/steps/test-yaml bin/tools/for-each yml
-	bin/steps/test-license LICENSE
 
 build:
 	bin/steps/build-pdf getting-help.md
@@ -14,6 +16,7 @@ build:
 
 deploy:
 	bin/steps/deploy-artifacts build/getting-help.*
+	bin/steps/deploy-empty-cache
 
 clean:
 	rm -rf build
