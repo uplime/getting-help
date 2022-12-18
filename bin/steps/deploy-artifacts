@@ -13,5 +13,5 @@ for file do
   fi
 
   try bin/tools/aws-wrapper s3 cp "$file" \
-    s3://"${S3_BKT_DST-aws-srv-docs}"/"${file##*/}"
+    s3://"${S3_BKT_DST-aws-srv-docs}"/aws/"${file##*/}"
 done
