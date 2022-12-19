@@ -209,6 +209,9 @@ leisure.
   - [Don't ask to ask, just ask][dont-ask]
   - [The XY Problem][xy]
 
+[![GitHub Mark](./asset/img/github.svg)][github]
+[![Discord Mark](./asset/img/discord.svg)][discord]
+
 [netiquette]: https://tilt.colostate.edu/netiquette-ground-rules-for-online-discussions/
 [multi-searches]: https://support.google.com/websearch/answer/2466433
 [python-docs]: https://twitter.com/ChrisShaver64/status/1072516363258880005
@@ -216,3 +219,5 @@ leisure.
 [smart-questions]: https://web.archive.org/web/20221015041850/http://www.catb.org/~esr/faqs/smart-questions.html
 [dont-ask]: https://dontasktoask.com/
 [xy]: https://xyproblem.info/
+[github]: https://github.com/uplime/getting-help
+[discord]: https://discord.gg/aws

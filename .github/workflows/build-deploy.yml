@@ -80,7 +80,7 @@ jobs:
       - name: Install dependencies required for building.
         id: install-build-dependencies
         run: |
-          sudo apt install -y curl gpg
+          sudo apt install -y curl gpg librsvg2-bin
 
       - name: Configure AWS credentials for the Storage account.
         id: configure-aws-credentials

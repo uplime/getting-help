@@ -5,6 +5,14 @@
 . bin/lib/log.sh
 . bin/lib/util.sh
 
+line-test() {
+  [[ $1 = *@(" "|$'\t') ]]
+}
+
+markdown-test() {
+  line-test "$1" && ! [[ $1 =~ [^\ ]"  "$ ]]
+}
+
 exclude=("(" "(" -name .git -o -name build ")" -type d -prune ")")
 include=("(" -type f -print0 ")")
 
@@ -14,12 +22,16 @@ find . "${exclude[@]}" -o "${include[@]}" | {
   # shellcheck disable=SC2094
   while IFS= read -rd "" file; do
     notice "processing file %s" "$file"
-    files+=("$file") idx=0
+    files+=("$file") idx=0 test_cb=line-test
+
+    if is-a "$file" md; then
+      test_cb=markdown-test
+    fi
 
     while IFS= read -r line; do
       (( idx += 1 ))
 
-      if [[ $line = *@(" "|$'\t') ]]; then
+      if "$test_cb" "$line"; then
         warning "file %s:%d has trailing space characters" "$file" "$idx"
       fi
     done < "$file"

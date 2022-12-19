@@ -27,7 +27,7 @@ header {
   order: 1
 }
 
-p:first-of-type {
+body > p:first-of-type {
   order: 2;
 }
 
@@ -40,8 +40,7 @@ a:link, a:visited, a:hover, a:active {
 }
 
 a:after {
-  content: "\1F517";
-  margin-left: 0.5rem;
+  content: " \1F517";
 }
 
 a:link, a:visited, a:active {
@@ -50,6 +49,14 @@ a:link, a:visited, a:active {
 
 a:hover {
   text-decoration: underline;
+}
+
+/*
+ * Content styling
+ */
+
+h2 ~ ul {
+  margin: 0;
 }
 
 /*
@@ -126,11 +133,34 @@ h3:before {
 }
 
 /*
- * Content styling
+ * Footer
  */
 
-h2 ~ ul {
-  margin: 0;
+body > p:last-of-type {
+  font-style: italic;
+  border-top: 0.2rem solid;
+  padding-top: 1rem;
+  text-align: center;
+}
+
+body > p:last-of-type > a:after {
+  content: "";
+  margin-top: 0.8rem;
+  margin-left: 0.8rem;
+  margin-right:0.8rem;
+}
+
+body > p:last-of-type > a:first-of-type {
+  margin-left: 0;
+}
+
+body > p:last-of-type > a:last-of-type {
+  margin-right: 0;
+}
+
+body > p:last-of-type > a > img {
+  height: 2rem;
+  width: 2rem;
 }
 
 /*
