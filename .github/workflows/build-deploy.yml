@@ -25,7 +25,7 @@ jobs:
       - name: Install dependencies required for building.
         id: install-build-dependencies
         run: |
-          sudo apt install -y texlive-latex-base texlive-latex-extra
+          sudo apt install -y texlive-latex-{base,extra} librsvg2-bin
           sudo -E bin/tools/install-pandoc
 
       - name: Build document artifacts for deployment.
@@ -77,10 +77,10 @@ jobs:
           message: Deploying the built documents.
           format: true
 
-      - name: Install dependencies required for building.
+      - name: Install dependencies required for deploying.
         id: install-build-dependencies
         run: |
-          sudo apt install -y curl gpg librsvg2-bin
+          sudo apt install -y curl gpg
 
       - name: Configure AWS credentials for the Storage account.
         id: configure-aws-credentials
