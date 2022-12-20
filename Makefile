@@ -12,6 +12,7 @@ test:
 
 build:
 	bin/steps/build-pdf getting-help.md
+	bin/steps/build-stylesheet asset/sass/style.sass
 	bin/steps/build-webpage getting-help.md
 
 deploy:
