@@ -1,0 +1,33 @@
+@use "link"
+@use "toc"
+@use "sect"
+@use "footer"
+@use "modes"
+
+body
+  font-family: Arial
+  font-size: 1rem
+  background: rgb(241, 236, 204)
+  color: rgb(60, 60, 60)
+  margin: 0
+  padding: 0
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+
+  > * 
+    text-align: left
+    width: 50%
+    max-width: 50%
+    order: 3
+
+  > header
+    text-align: center
+    order: 1
+
+  > p:first-of-type
+    order: 2
+
+  h2 ~ ul
+    margin: 0

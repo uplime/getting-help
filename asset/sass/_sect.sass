@@ -1,0 +1,28 @@
+/*
+ * Section Headers
+ */
+
+h2, h3
+  margin: 0.2rem
+
+  > a
+    &:link, &:visited, &:hover, &:active
+      color: inherit
+
+    &:after
+      content: ""
+      margin-left: 0
+
+h2
+  font-size: 1.8rem
+
+  &:before
+    content: "##"
+    margin-right: 0.5rem
+
+h3
+  font-size: 1.3rem
+
+  &:before
+    content: "###"
+    margin-right: 0.5rem
