@@ -30,6 +30,7 @@ jobs:
         id: install-build-dependencies
         run: |
           sudo apt install -y texlive-latex-{base,extra} librsvg2-bin
+          sudo npm install -g sass
           sudo -E bin/tools/install-pandoc
 
       - name: Build document artifacts for deployment.
