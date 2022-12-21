@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# These files will be checked separately.
+# shellcheck disable=SC1091
+. bin/lib/log.sh
+. bin/lib/util.sh
+
+notice "building intermediate stylesheet"
+try sass --no-source-map "$@" build/style.css
