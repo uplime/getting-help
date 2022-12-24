@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+if (( $# )); then
+  actions=("$@")
+else
+  actions=(-print0)
+fi
+
+find . \
+  "(" "(" -name .git -o -name build ")" -type d -prune ")" -o \
+  "(" -type f "${actions[@]}" ")"

@@ -4,7 +4,7 @@
 # shellcheck disable=SC1091
 . bin/lib/util.sh
 
-find . "(" -type d -name .git -prune ")" -o "(" -type f -print0 ")" | {
+bin/tools/collect-files | {
   while IFS= read -rd "" file; do
     if is-a "$file" "$@"; then
       files+=("$file")

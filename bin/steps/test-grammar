@@ -13,10 +13,7 @@ markdown-test() {
   line-test "$1" && ! [[ $1 =~ [^\ ]"  "$ ]]
 }
 
-exclude=("(" "(" -name .git -o -name build ")" -type d -prune ")")
-include=("(" -type f -print0 ")")
-
-find . "${exclude[@]}" -o "${include[@]}" | {
+bin/tools/collect-files | {
   # Warning does not apply here, since the file is only being read from and not
   # written to.
   # shellcheck disable=SC2094
