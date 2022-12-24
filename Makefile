@@ -21,3 +21,6 @@ deploy:
 
 clean:
 	rm -rf build
+
+remote-clean:
+	bin/steps/destory-remote aws/getting-help.html aws/getting-help.pdf
