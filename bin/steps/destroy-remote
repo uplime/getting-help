@@ -13,5 +13,5 @@ for file do
   fi
 
   try bin/tools/aws-wrapper s3 rm "$file" \
-    s3://"${S3_BKT_DST-cloudops-store-aws-docs}"/"$file'
+    s3://"${S3_BKT_DST-cloudops-store-aws-docs}"/"$file"
 done
