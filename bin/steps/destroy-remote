@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# These files will be checked separately.
+# shellcheck disable=SC1091
+. bin/lib/log.sh
+. bin/lib/util.sh
+
+for file do
+  notice "processing file %s" "$file"
+
+  try bin/tools/aws-wrapper s3 rm \
+    s3://"${S3_BKT_DST-cloudops-store-aws-docs}"/"$file"
+done
