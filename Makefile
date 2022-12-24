@@ -23,4 +23,4 @@ clean:
 	rm -rf build
 
 remote-clean:
-	bin/steps/destory-remote aws/getting-help.html aws/getting-help.pdf
+	bin/steps/destroy-remote aws/getting-help.html aws/getting-help.pdf

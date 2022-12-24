@@ -8,10 +8,6 @@
 for file do
   notice "processing file %s" "$file"
 
-  if [[ ! -r $file ]]; then
-    die "unable to load file %s" "$file"
-  fi
-
-  try bin/tools/aws-wrapper s3 rm "$file" \
+  try bin/tools/aws-wrapper s3 rm \
     s3://"${S3_BKT_DST-cloudops-store-aws-docs}"/"$file"
 done
