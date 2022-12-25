@@ -88,11 +88,16 @@ jobs:
           sudo apt install -y curl gpg
 
       - name: Configure AWS credentials for the Storage account.
-        id: configure-aws-credentials
+        id: configure-aws-credentials-deploy
         uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: ${{ secrets.CLOUDOPS_AWS_DOCS_DEPLOY_ROLE }}
-          aws-region: us-west-2
+
+      - name: Configure AWS credentials for the Cloudfront account.
+        id: configure-aws-credentials-empty
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ secrets.CLOUDOPS_FE_EMPTY_CACHE_ROLE }}
 
       - name: Use the built cache.
         id: store-artifact-cache
