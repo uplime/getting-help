@@ -92,12 +92,14 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: ${{ secrets.CLOUDOPS_AWS_DOCS_DEPLOY_ROLE }}
+          aws-region: us-east-1
 
       - name: Configure AWS credentials for the Cloudfront account.
         id: configure-aws-credentials-empty
         uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: ${{ secrets.CLOUDOPS_FE_EMPTY_CACHE_ROLE }}
+          aws-region: us-east-1
 
       - name: Use the built cache.
         id: store-artifact-cache
