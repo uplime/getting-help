@@ -17,7 +17,7 @@ build:
 
 deploy:
 	bin/steps/deploy-artifacts build/getting-help.*
-#	bin/steps/deploy-empty-cache
+	bin/steps/deploy-empty-cache
 
 clean:
 	rm -rf build
