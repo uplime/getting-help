@@ -15,4 +15,4 @@ if [[ -z $cf_dist_id ]]; then
 fi
 
 try bin/tools/aws-wrapper cloudfront create-invalidation \
-  --paths "/getting-help.*" --distribution-id "$cf_dist_id" >/dev/null
+  --paths "/aws/*" --distribution-id "$cf_dist_id" >/dev/null
