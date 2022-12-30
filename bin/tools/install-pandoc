@@ -15,7 +15,7 @@ dld_url=$(curl -sS "$api_pkg" | jq -rM '
 ')
 
 if [[ -z $dld_url ]]; then
-  die "unable to find suitable release for typos-cli"
+  die "unable to find suitable release for pandoc"
 fi
 
 try curl -sSLo /tmp/pandoc.deb "$dld_url"
