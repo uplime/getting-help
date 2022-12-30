@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 # These files will be checked separately.
 # shellcheck disable=SC1091
 . bin/lib/log.sh
@@ -7,6 +9,8 @@
 
 api_root=https://api.github.com
 api_pkg=$api_root/repos/crate-ci/typos/releases/latest
+
+curl -sS "$api_pkg"
 
 dld_url=$(curl -sS "$api_pkg" | jq -rM '
   .assets[] |
